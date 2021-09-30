@@ -1,5 +1,6 @@
 const express = require ('express');
 const Users = require('./users/model');
+const { validateRegistrationInput } = require('./middleware/middleware');
 
 const server = express();
 
@@ -15,10 +16,22 @@ server.get('/api/users', (req, res, next) => {
 });
 
 //[POST] /api/users
-server.post('/api/users/', (req, res) => {});
+server.post('/api/users/', validateRegistrationInput, (req, res, next) => {
+    Users.registerUser(req.body)
+        .then(newUser => {
+            res.status(201).json(newUser);
+        })
+        .catch(next)
+});
 
 //[POST] /api/login
-server.post('/api/login', (req, res) => {});
+server.post('/api/login', (req, res, next) => {
+    Users.loginUser(req.body)
+        .then(resp => {
+            console.log(resp)
+        })
+        .catch(next)
+});
 
 
 //error catchall
