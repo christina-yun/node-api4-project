@@ -26,14 +26,15 @@ async function validateRegistrationInput(req, res, next){
     }
 }
 
-async function validateLogin(req, res, next){
-    try{
-        const validated =
-    }
-    catch(err){
-        next({ status: 400, message: 'Username or password is incorrect'})
-    }
-}
+//not finished
+// async function validateLogin(req, res, next){
+//     try{
+//         const validated =
+//     }
+//     catch(err){
+//         next({ status: 400, message: 'Username or password is incorrect'})
+//     }
+// }
 
 module.exports = {
     validateRegistrationInput
